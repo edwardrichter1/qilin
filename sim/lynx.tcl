@@ -332,7 +332,7 @@ if {[string equal [get_filesets -quiet sources_1] ""]} {
 # Set IP repository paths
 set obj [get_filesets sources_1]
 if { $obj != {} } {
-   set_property "ip_repo_paths" "[file normalize "$origin_dir/../ip_repo"]" $obj
+   set_property "ip_repo_paths" "[file normalize "$origin_dir/ip_repo"]" $obj
 
    # Rebuild user ip_repo's index before adding any source files
    update_ip_catalog -rebuild
@@ -395,12 +395,11 @@ set files [list \
  [file normalize "${origin_dir}/hdl/regs/req_reg_rtl.sv"] \
  [file normalize "${origin_dir}/hdl/mmu/tlb_arbiter.sv"] \
  [file normalize "${origin_dir}/hdl/mmu/tlb_arbiter_isr.sv"] \
-
- [file normalize "${origin_dir}/hdl/lynx_pkg.sv" ]\
+ [file normalize "${origin_dir}/hdl/lynx_pkg.sv"]\
  [file normalize "${origin_dir}/hdl/cdma_unaglined/axi_dma.sv"]\
  [file normalize "${origin_dir}/hdl/cdma_unaglined/axi_dma_rd.sv"]\
  [file normalize "${origin_dir}/hdl/cdma_unaglined/axi_dma_wr.sv"]\
- [file normalize "${origin_dir}/hdl/config_0/controller.sv" ]\
+ [file normalize "${origin_dir}/hdl/config_0/controller.sv"]\
  [file normalize "${origin_dir}/hdl/config_0/design_user_logic_c0_0.sv" ]\
  [file normalize "${origin_dir}/hdl/wrappers/config_0/design_user_wrapper_c0_0.sv" ]\
  [file normalize "${origin_dir}/hdl/wrappers/dynamic_wrapper.sv" ]\
@@ -1147,8 +1146,9 @@ set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 
 # Set 'sources_1' fileset file properties for local files
-set file "${origin_dir}/hdl/lynx_pkg.sv"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set file "$origin_dir/hdl/lynx_pkg.sv"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "$file"]] 
 set_property -name "file_type" -value "SystemVerilog" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
 set_property -name "is_global_include" -value "0" -objects $file_obj
@@ -1159,8 +1159,9 @@ set_property -name "used_in_implementation" -value "1" -objects $file_obj
 set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
-set file "${origin_dir}/hdl/cdma_unaglined/axi_dma.sv"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set file "$origin_dir/hdl/cdma_unaglined/axi_dma.sv"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "$file"]]
 set_property -name "file_type" -value "SystemVerilog" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
 set_property -name "is_global_include" -value "0" -objects $file_obj
@@ -1172,7 +1173,8 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/cdma_unaglined/axi_dma_rd.sv"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "$file"]]
 set_property -name "file_type" -value "SystemVerilog" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
 set_property -name "is_global_include" -value "0" -objects $file_obj
@@ -1184,7 +1186,8 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/cdma_unaglined/axi_dma_wr.sv"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "$file"]]
 set_property -name "file_type" -value "SystemVerilog" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
 set_property -name "is_global_include" -value "0" -objects $file_obj
@@ -1196,7 +1199,8 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/config_0/controller.sv"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "$file"]]
 set_property -name "file_type" -value "SystemVerilog" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
 set_property -name "is_global_include" -value "0" -objects $file_obj
@@ -1208,7 +1212,8 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/config_0/design_user_logic_c0_0.sv"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "$file"]]
 set_property -name "file_type" -value "SystemVerilog" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
 set_property -name "is_global_include" -value "0" -objects $file_obj
@@ -1219,8 +1224,9 @@ set_property -name "used_in_implementation" -value "1" -objects $file_obj
 set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
-set file "${origin_dir}/hdl/config_0/design_user_wrapper_c0_0.sv"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set file "${origin_dir}/hdl/wrappers/config_0/design_user_wrapper_c0_0.sv"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "$file"]]
 set_property -name "file_type" -value "SystemVerilog" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
 set_property -name "is_global_include" -value "0" -objects $file_obj
@@ -1232,7 +1238,8 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/wrappers/dynamic_wrapper.sv"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "$file"]]
 set_property -name "file_type" -value "SystemVerilog" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
 set_property -name "is_global_include" -value "0" -objects $file_obj
@@ -1244,7 +1251,8 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/config_0/linked_list_traversal_data_path.sv"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "$file"]]
 set_property -name "file_type" -value "SystemVerilog" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
 set_property -name "is_global_include" -value "0" -objects $file_obj
@@ -1256,7 +1264,8 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/config_0/random_read_controller.sv"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "$file"]]
 set_property -name "file_type" -value "SystemVerilog" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
 set_property -name "is_global_include" -value "0" -objects $file_obj
@@ -1268,7 +1277,8 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/config_0/receive_controller.sv"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "$file"]]
 set_property -name "file_type" -value "SystemVerilog" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
 set_property -name "is_global_include" -value "0" -objects $file_obj
@@ -1280,7 +1290,8 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/config_0/simple_histogram.sv"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "$file"]]
 set_property -name "file_type" -value "SystemVerilog" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
 set_property -name "is_global_include" -value "0" -objects $file_obj
@@ -1292,7 +1303,8 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/wrappers/top.sv"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "$file"]]
 set_property -name "file_type" -value "SystemVerilog" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
 set_property -name "is_global_include" -value "0" -objects $file_obj
@@ -1304,7 +1316,8 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/config_0/random_read_data_path.sv"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "$file"]]
 set_property -name "file_type" -value "SystemVerilog" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
 set_property -name "is_global_include" -value "0" -objects $file_obj
@@ -1316,7 +1329,7 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/ip/axil_register_slice_0/axil_register_slice_0.xci"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "$file"]]
 set_property -name "generate_files_for_reference" -value "0" -objects $file_obj
 if { ![get_property "is_locked" $file_obj] } {
   set_property -name "generate_synth_checkpoint" -value "1" -objects $file_obj
@@ -1335,7 +1348,7 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/ip/axis_register_slice_req_96_0/axis_register_slice_req_96_0.xci"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "$file"]]
 set_property -name "generate_files_for_reference" -value "0" -objects $file_obj
 if { ![get_property "is_locked" $file_obj] } {
   set_property -name "generate_synth_checkpoint" -value "1" -objects $file_obj
@@ -1354,7 +1367,7 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/ip/axis_register_slice_meta_32_0/axis_register_slice_meta_32_0.xci"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "$file"]]
 set_property -name "generate_files_for_reference" -value "0" -objects $file_obj
 if { ![get_property "is_locked" $file_obj] } {
   set_property -name "generate_synth_checkpoint" -value "1" -objects $file_obj
@@ -1373,7 +1386,7 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/ip/axis_register_slice_meta_56_0/axis_register_slice_meta_56_0.xci"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "$file"]]
 set_property -name "generate_files_for_reference" -value "0" -objects $file_obj
 if { ![get_property "is_locked" $file_obj] } {
   set_property -name "generate_synth_checkpoint" -value "1" -objects $file_obj
@@ -1392,7 +1405,7 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/ip/axis_register_slice_meta_256_0/axis_register_slice_meta_256_0.xci"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "$file"]]
 set_property -name "generate_files_for_reference" -value "0" -objects $file_obj
 if { ![get_property "is_locked" $file_obj] } {
   set_property -name "generate_synth_checkpoint" -value "1" -objects $file_obj
@@ -1411,7 +1424,7 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/ip/axi_register_slice_0/axi_register_slice_0.xci"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "$file"]]
 set_property -name "generate_files_for_reference" -value "0" -objects $file_obj
 if { ![get_property "is_locked" $file_obj] } {
   set_property -name "generate_synth_checkpoint" -value "1" -objects $file_obj
@@ -1451,7 +1464,7 @@ set_property -name "vhdl_version" -value "vhdl_2k" -objects $obj
 set obj [get_filesets sources_1]
 # Import local files from the original project
 set files [list \
- [file normalize "${origin_dir}/ip/ll_rd_req_switch/ll_rd_req_switch.xci" ]\
+ [file normalize "${origin_dir}/hdl/ip/ll_rd_req_switch/ll_rd_req_switch.xci" ]\
 ]
 set imported_files [import_files -fileset sources_1 $files]
 
@@ -1459,8 +1472,8 @@ set imported_files [import_files -fileset sources_1 $files]
 # None
 
 # Set 'sources_1' fileset file properties for local files
-set file "${origin_dir}/ip/ll_rd_req_switch/ll_rd_req_switch.xci"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set file "${origin_dir}/lynx/lynx.srcs/sources_1/ip/ll_rd_req_switch/ll_rd_req_switch.xci"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "$file"]]
 set_property -name "generate_files_for_reference" -value "0" -objects $file_obj
 if { ![get_property "is_locked" $file_obj] } {
   set_property -name "generate_synth_checkpoint" -value "1" -objects $file_obj
@@ -1483,7 +1496,7 @@ set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 set obj [get_filesets sources_1]
 # Import local files from the original project
 set files [list \
- [file normalize "${origin_dir}/ip/axisr_register_slice_2k_0/axisr_register_slice_2k_0.xci" ]\
+ [file normalize "${origin_dir}/hdl/ip/axisr_register_slice_2k_0/axisr_register_slice_2k_0.xci" ]\
 ]
 set imported_files [import_files -fileset sources_1 $files]
 
@@ -1491,8 +1504,8 @@ set imported_files [import_files -fileset sources_1 $files]
 # None
 
 # Set 'sources_1' fileset file properties for local files
-set file "${origin_dir}/ip/axisr_register_slice_2k_0/axisr_register_slice_2k_0.xci"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set file "${origin_dir}/lynx/lynx.srcs/sources_1/ip/axisr_register_slice_2k_0/axisr_register_slice_2k_0.xci"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "$file"]]
 set_property -name "generate_files_for_reference" -value "0" -objects $file_obj
 if { ![get_property "is_locked" $file_obj] } {
   set_property -name "generate_synth_checkpoint" -value "1" -objects $file_obj
@@ -1515,7 +1528,7 @@ set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 set obj [get_filesets sources_1]
 # Import local files from the original project
 set files [list \
- [file normalize "${origin_dir}/ip/axisr_register_slice_1k_0/axisr_register_slice_1k_0.xci" ]\
+ [file normalize "${origin_dir}/hdl/ip/axisr_register_slice_1k_0/axisr_register_slice_1k_0.xci" ]\
 ]
 set imported_files [import_files -fileset sources_1 $files]
 
@@ -1523,8 +1536,8 @@ set imported_files [import_files -fileset sources_1 $files]
 # None
 
 # Set 'sources_1' fileset file properties for local files
-set file "${origin_dir}/ip/axisr_register_slice_1k_0/axisr_register_slice_1k_0.xci"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set file "${origin_dir}/lynx/lynx.srcs/sources_1/ip/axisr_register_slice_1k_0/axisr_register_slice_1k_0.xci"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "$file"]]
 set_property -name "generate_files_for_reference" -value "0" -objects $file_obj
 if { ![get_property "is_locked" $file_obj] } {
   set_property -name "generate_synth_checkpoint" -value "1" -objects $file_obj
@@ -1547,7 +1560,7 @@ set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 set obj [get_filesets sources_1]
 # Import local files from the original project
 set files [list \
- [file normalize "${origin_dir}/ip/axisr_register_slice_512_0/axisr_register_slice_512_0.xci" ]\
+ [file normalize "${origin_dir}/hdl/ip/axisr_register_slice_512_0/axisr_register_slice_512_0.xci" ]\
 ]
 set imported_files [import_files -fileset sources_1 $files]
 
@@ -1555,8 +1568,8 @@ set imported_files [import_files -fileset sources_1 $files]
 # None
 
 # Set 'sources_1' fileset file properties for local files
-set file "${origin_dir}/ip/axisr_register_slice_512_0/axisr_register_slice_512_0.xci"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set file "${origin_dir}/lynx/lynx.srcs/sources_1/ip/axisr_register_slice_512_0/axisr_register_slice_512_0.xci"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "$file"]]
 set_property -name "generate_files_for_reference" -value "0" -objects $file_obj
 if { ![get_property "is_locked" $file_obj] } {
   set_property -name "generate_synth_checkpoint" -value "1" -objects $file_obj
@@ -1579,7 +1592,7 @@ set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 set obj [get_filesets sources_1]
 # Import local files from the original project
 set files [list \
- [file normalize "${origin_dir}/ip/axis_data_fifo_2k/axis_data_fifo_2k.xci" ]\
+ [file normalize "${origin_dir}/hdl/ip/axis_data_fifo_2k/axis_data_fifo_2k.xci" ]\
 ]
 set imported_files [import_files -fileset sources_1 $files]
 
@@ -1587,8 +1600,8 @@ set imported_files [import_files -fileset sources_1 $files]
 # None
 
 # Set 'sources_1' fileset file properties for local files
-set file "${origin_dir}/ip/axis_data_fifo_2k/axis_data_fifo_2k.xci"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set file "${origin_dir}/lynx/lynx.srcs/sources_1/ip/axis_data_fifo_2k/axis_data_fifo_2k.xci"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "$file"]]
 set_property -name "generate_files_for_reference" -value "0" -objects $file_obj
 if { ![get_property "is_locked" $file_obj] } {
   set_property -name "generate_synth_checkpoint" -value "1" -objects $file_obj
@@ -1611,7 +1624,7 @@ set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 set obj [get_filesets sources_1]
 # Import local files from the original project
 set files [list \
- [file normalize "${origin_dir}/ip/axis_data_fifo_1k/axis_data_fifo_1k.xci" ]\
+ [file normalize "${origin_dir}/hdl/ip/axis_data_fifo_1k/axis_data_fifo_1k.xci" ]\
 ]
 set imported_files [import_files -fileset sources_1 $files]
 
@@ -1619,8 +1632,8 @@ set imported_files [import_files -fileset sources_1 $files]
 # None
 
 # Set 'sources_1' fileset file properties for local files
-set file "${origin_dir}/ip/axis_data_fifo_1k/axis_data_fifo_1k.xci"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set file "${origin_dir}/lynx/lynx.srcs/sources_1/ip/axis_data_fifo_1k/axis_data_fifo_1k.xci"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "$file"]]
 set_property -name "generate_files_for_reference" -value "0" -objects $file_obj
 if { ![get_property "is_locked" $file_obj] } {
   set_property -name "generate_synth_checkpoint" -value "1" -objects $file_obj
@@ -1643,7 +1656,7 @@ set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 set obj [get_filesets sources_1]
 # Import local files from the original project
 set files [list \
- [file normalize "${origin_dir}/ip/axis_data_fifo_512/axis_data_fifo_512.xci" ]\
+ [file normalize "${origin_dir}/hdl/ip/axis_data_fifo_512/axis_data_fifo_512.xci" ]\
 ]
 set imported_files [import_files -fileset sources_1 $files]
 
@@ -1651,8 +1664,8 @@ set imported_files [import_files -fileset sources_1 $files]
 # None
 
 # Set 'sources_1' fileset file properties for local files
-set file "${origin_dir}/ip/axis_data_fifo_512/axis_data_fifo_512.xci"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set file "${origin_dir}/lynx/lynx.srcs/sources_1/ip/axis_data_fifo_512/axis_data_fifo_512.xci"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "$file"]]
 set_property -name "generate_files_for_reference" -value "0" -objects $file_obj
 if { ![get_property "is_locked" $file_obj] } {
   set_property -name "generate_synth_checkpoint" -value "1" -objects $file_obj
@@ -1675,7 +1688,7 @@ set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 set obj [get_filesets sources_1]
 # Import local files from the original project
 set files [list \
- [file normalize "${origin_dir}/ip/dyn_crossbar_0/dyn_crossbar_0.xci" ]\
+ [file normalize "${origin_dir}/hdl/ip/dyn_crossbar_0/dyn_crossbar_0.xci" ]\
 ]
 set imported_files [import_files -fileset sources_1 $files]
 
@@ -1683,8 +1696,8 @@ set imported_files [import_files -fileset sources_1 $files]
 # None
 
 # Set 'sources_1' fileset file properties for local files
-set file "${origin_dir}/ip/dyn_crossbar_0/dyn_crossbar_0.xci"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set file "${origin_dir}/lynx/lynx.srcs/sources_1/ip/dyn_crossbar_0/dyn_crossbar_0.xci"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "$file"]]
 set_property -name "generate_files_for_reference" -value "0" -objects $file_obj
 if { ![get_property "is_locked" $file_obj] } {
   set_property -name "generate_synth_checkpoint" -value "1" -objects $file_obj
@@ -1707,7 +1720,7 @@ set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 set obj [get_filesets sources_1]
 # Import local files from the original project
 set files [list \
- [file normalize "${origin_dir}/ip/axis_data_fifo_req_96/axis_data_fifo_req_96.xci" ]\
+ [file normalize "${origin_dir}/hdl/ip/axis_data_fifo_req_96/axis_data_fifo_req_96.xci" ]\
 ]
 set imported_files [import_files -fileset sources_1 $files]
 
@@ -1715,8 +1728,8 @@ set imported_files [import_files -fileset sources_1 $files]
 # None
 
 # Set 'sources_1' fileset file properties for local files
-set file "${origin_dir}/ip/axis_data_fifo_req_96/axis_data_fifo_req_96.xci"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set file "${origin_dir}/lynx/lynx.srcs/sources_1/ip/axis_data_fifo_req_96/axis_data_fifo_req_96.xci"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "$file"]]
 set_property -name "generate_files_for_reference" -value "0" -objects $file_obj
 if { ![get_property "is_locked" $file_obj] } {
   set_property -name "generate_synth_checkpoint" -value "1" -objects $file_obj
@@ -1739,7 +1752,7 @@ set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 set obj [get_filesets sources_1]
 # Import local files from the original project
 set files [list \
- [file normalize "${origin_dir}/ip/axis_interconnect_cnfg_req_arbiter/axis_interconnect_cnfg_req_arbiter.xci" ]\
+ [file normalize "${origin_dir}/hdl/ip/axis_interconnect_cnfg_req_arbiter/axis_interconnect_cnfg_req_arbiter.xci" ]\
 ]
 set imported_files [import_files -fileset sources_1 $files]
 
@@ -1747,8 +1760,8 @@ set imported_files [import_files -fileset sources_1 $files]
 # None
 
 # Set 'sources_1' fileset file properties for local files
-set file "${origin_dir}/ip/axis_interconnect_cnfg_req_arbiter/axis_interconnect_cnfg_req_arbiter.xci"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set file "${origin_dir}/lynx/lynx.srcs/sources_1/ip/axis_interconnect_cnfg_req_arbiter/axis_interconnect_cnfg_req_arbiter.xci"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "$file"]]
 set_property -name "generate_files_for_reference" -value "0" -objects $file_obj
 if { ![get_property "is_locked" $file_obj] } {
   set_property -name "generate_synth_checkpoint" -value "1" -objects $file_obj
@@ -1771,7 +1784,7 @@ set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 set obj [get_filesets sources_1]
 # Import local files from the original project
 set files [list \
- [file normalize "${origin_dir}/ip/axis_data_fifo_req_96_used/axis_data_fifo_req_96_used.xci" ]\
+ [file normalize "${origin_dir}/hdl/ip/axis_data_fifo_req_96_used/axis_data_fifo_req_96_used.xci" ]\
 ]
 set imported_files [import_files -fileset sources_1 $files]
 
@@ -1779,8 +1792,8 @@ set imported_files [import_files -fileset sources_1 $files]
 # None
 
 # Set 'sources_1' fileset file properties for local files
-set file "${origin_dir}/ip/axis_data_fifo_req_96_used/axis_data_fifo_req_96_used.xci"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set file "${origin_dir}/lynx/lynx.srcs/sources_1/ip/axis_data_fifo_req_96_used/axis_data_fifo_req_96_used.xci"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "$file"]]
 set_property -name "generate_files_for_reference" -value "0" -objects $file_obj
 if { ![get_property "is_locked" $file_obj] } {
   set_property -name "generate_synth_checkpoint" -value "1" -objects $file_obj
@@ -1803,7 +1816,7 @@ set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 set obj [get_filesets sources_1]
 # Import local files from the original project
 set files [list \
- [file normalize "${origin_dir}/ip/axis_register_slice_2k_0/axis_register_slice_2k_0.xci" ]\
+ [file normalize "${origin_dir}/hdl/ip/axis_register_slice_2k_0/axis_register_slice_2k_0.xci" ]\
 ]
 set imported_files [import_files -fileset sources_1 $files]
 
@@ -1811,8 +1824,8 @@ set imported_files [import_files -fileset sources_1 $files]
 # None
 
 # Set 'sources_1' fileset file properties for local files
-set file "${origin_dir}/ip/axis_register_slice_2k_0/axis_register_slice_2k_0.xci"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set file "${origin_dir}/lynx/lynx.srcs/sources_1/ip/axis_register_slice_2k_0/axis_register_slice_2k_0.xci"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "$file"]]
 set_property -name "generate_files_for_reference" -value "0" -objects $file_obj
 if { ![get_property "is_locked" $file_obj] } {
   set_property -name "generate_synth_checkpoint" -value "1" -objects $file_obj
@@ -1835,7 +1848,7 @@ set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 set obj [get_filesets sources_1]
 # Import local files from the original project
 set files [list \
- [file normalize "${origin_dir}/ip/axis_register_slice_1k_0/axis_register_slice_1k_0.xci" ]\
+ [file normalize "${origin_dir}/hdl/ip/axis_register_slice_1k_0/axis_register_slice_1k_0.xci" ]\
 ]
 set imported_files [import_files -fileset sources_1 $files]
 
@@ -1843,8 +1856,8 @@ set imported_files [import_files -fileset sources_1 $files]
 # None
 
 # Set 'sources_1' fileset file properties for local files
-set file "${origin_dir}/ip/axis_register_slice_1k_0/axis_register_slice_1k_0.xci"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set file "${origin_dir}/lynx/lynx.srcs/sources_1/ip/axis_register_slice_1k_0/axis_register_slice_1k_0.xci"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "$file"]]
 set_property -name "generate_files_for_reference" -value "0" -objects $file_obj
 if { ![get_property "is_locked" $file_obj] } {
   set_property -name "generate_synth_checkpoint" -value "1" -objects $file_obj
@@ -1867,7 +1880,7 @@ set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 set obj [get_filesets sources_1]
 # Import local files from the original project
 set files [list \
- [file normalize "${origin_dir}/ip/axis_register_slice_512_0/axis_register_slice_512_0.xci" ]\
+ [file normalize "${origin_dir}/hdl/ip/axis_register_slice_512_0/axis_register_slice_512_0.xci" ]\
 ]
 set imported_files [import_files -fileset sources_1 $files]
 
@@ -1875,8 +1888,8 @@ set imported_files [import_files -fileset sources_1 $files]
 # None
 
 # Set 'sources_1' fileset file properties for local files
-set file "${origin_dir}/ip/axis_register_slice_512_0/axis_register_slice_512_0.xci"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set file "${origin_dir}/lynx/lynx.srcs/sources_1/ip/axis_register_slice_512_0/axis_register_slice_512_0.xci"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "$file"]]
 set_property -name "generate_files_for_reference" -value "0" -objects $file_obj
 if { ![get_property "is_locked" $file_obj] } {
   set_property -name "generate_synth_checkpoint" -value "1" -objects $file_obj
@@ -1899,7 +1912,7 @@ set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 set obj [get_filesets sources_1]
 # Import local files from the original project
 set files [list \
- [file normalize "${origin_dir}/ip/axis_data_fifo_req_128/axis_data_fifo_req_128.xci" ]\
+ [file normalize "${origin_dir}/hdl/ip/axis_data_fifo_req_128/axis_data_fifo_req_128.xci" ]\
 ]
 set imported_files [import_files -fileset sources_1 $files]
 
@@ -1907,8 +1920,8 @@ set imported_files [import_files -fileset sources_1 $files]
 # None
 
 # Set 'sources_1' fileset file properties for local files
-set file "${origin_dir}/ip/axis_data_fifo_req_128/axis_data_fifo_req_128.xci"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set file "${origin_dir}/lynx/lynx.srcs/sources_1/ip/axis_data_fifo_req_128/axis_data_fifo_req_128.xci"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "$file"]]
 set_property -name "generate_files_for_reference" -value "0" -objects $file_obj
 if { ![get_property "is_locked" $file_obj] } {
   set_property -name "generate_synth_checkpoint" -value "1" -objects $file_obj
@@ -1931,7 +1944,7 @@ set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 set obj [get_filesets sources_1]
 # Import local files from the original project
 set files [list \
- [file normalize "${origin_dir}/ip/axis_card_host_mux/axis_card_host_mux.xci" ]\
+ [file normalize "${origin_dir}/hdl/ip/axis_card_host_mux/axis_card_host_mux.xci" ]\
 ]
 set imported_files [import_files -fileset sources_1 $files]
 
@@ -1939,8 +1952,8 @@ set imported_files [import_files -fileset sources_1 $files]
 # None
 
 # Set 'sources_1' fileset file properties for local files
-set file "${origin_dir}/ip/axis_card_host_mux/axis_card_host_mux.xci"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set file "${origin_dir}/lynx/lynx.srcs/sources_1/ip/axis_card_host_mux/axis_card_host_mux.xci"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "$file"]]
 set_property -name "generate_files_for_reference" -value "0" -objects $file_obj
 if { ![get_property "is_locked" $file_obj] } {
   set_property -name "generate_synth_checkpoint" -value "1" -objects $file_obj
@@ -1968,11 +1981,11 @@ if {[string equal [get_filesets -quiet constrs_1] ""]} {
 set obj [get_filesets constrs_1]
 
 # Add/Import constrs file and set constrs file properties
-set file "[file normalize "$origin_dir/constraints/u280_ddr.xdc"]"
+set file "[file normalize "$origin_dir/hdl/constraints/u280_ddr.xdc"]"
 set file_added [add_files -norecurse -fileset $obj [list $file]]
-set file "$origin_dir/constraints/u280_ddr.xdc"
+set file "$origin_dir/hdl/constraints/u280_ddr.xdc"
 set file [file normalize $file]
-set file_obj [get_files -of_objects [get_filesets constrs_1] [list "*$file"]]
+set file_obj [get_files -of_objects [get_filesets constrs_1] [list "$file"]]
 set_property -name "file_type" -value "XDC" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
 set_property -name "is_global_include" -value "0" -objects $file_obj
@@ -1986,11 +1999,11 @@ set_property -name "used_in_implementation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 # Add/Import constrs file and set constrs file properties
-set file "[file normalize "$origin_dir/constraints/u280_net.xdc"]"
+set file "[file normalize "$origin_dir/hdl/constraints/u280_net.xdc"]"
 set file_added [add_files -norecurse -fileset $obj [list $file]]
-set file "$origin_dir/constraints/u280_net.xdc"
+set file "$origin_dir/hdl/constraints/u280_net.xdc"
 set file [file normalize $file]
-set file_obj [get_files -of_objects [get_filesets constrs_1] [list "*$file"]]
+set file_obj [get_files -of_objects [get_filesets constrs_1] [list "$file"]]
 set_property -name "file_type" -value "XDC" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
 set_property -name "is_global_include" -value "0" -objects $file_obj
@@ -2004,11 +2017,11 @@ set_property -name "used_in_implementation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 # Add/Import constrs file and set constrs file properties
-set file "[file normalize "$origin_dir/constraints/u280_pcie.xdc"]"
+set file "[file normalize "$origin_dir/hdl/constraints/u280_pcie.xdc"]"
 set file_added [add_files -norecurse -fileset $obj [list $file]]
-set file "$origin_dir/constraints/u280_pcie.xdc"
+set file "$origin_dir/hdl/constraints/u280_pcie.xdc"
 set file [file normalize $file]
-set file_obj [get_files -of_objects [get_filesets constrs_1] [list "*$file"]]
+set file_obj [get_files -of_objects [get_filesets constrs_1] [list "$file"]]
 set_property -name "file_type" -value "XDC" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
 set_property -name "is_global_include" -value "0" -objects $file_obj
@@ -2022,11 +2035,11 @@ set_property -name "used_in_implementation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 # Add/Import constrs file and set constrs file properties
-set file "[file normalize "$origin_dir/constraints/u280_base.xdc"]"
+set file "[file normalize "$origin_dir/hdl/constraints/u280_base.xdc"]"
 set file_added [add_files -norecurse -fileset $obj [list $file]]
-set file "$origin_dir/constraints/u280_base.xdc"
+set file "$origin_dir/hdl/constraints/u280_base.xdc"
 set file [file normalize $file]
-set file_obj [get_files -of_objects [get_filesets constrs_1] [list "*$file"]]
+set file_obj [get_files -of_objects [get_filesets constrs_1] [list "$file"]]
 set_property -name "file_type" -value "XDC" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
 set_property -name "is_global_include" -value "0" -objects $file_obj
@@ -2040,10 +2053,11 @@ set_property -name "used_in_implementation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 # Add/Import constrs file and set constrs file properties
-set file "[file normalize "$origin_dir/lynx.srcs/constrs_1/local.xdc"]"
-set file_imported [import_files -fileset constrs_1 [list $file]]
-set file "constrs_1/local.xdc"
-set file_obj [get_files -of_objects [get_filesets constrs_1] [list "*$file"]]
+set file "[file normalize "$origin_dir/hdl/constraints/local.xdc"]"
+set file_added [add_files -norecurse -fileset $obj [list $file]]
+set file "$origin_dir/hdl/constraints/local.xdc"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets constrs_1] [list "$file"]]
 set_property -name "file_type" -value "XDC" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
 set_property -name "is_global_include" -value "0" -objects $file_obj
@@ -2069,6 +2083,7 @@ if {[string equal [get_filesets -quiet sim_1] ""]} {
 }
 
 # Import local files from the original project
+set obj [get_filesets sim_1]
 set files [list \
  [file normalize "${origin_dir}/hdl/qdma_sim/pcie_4_c_rp.v"]\
  [file normalize "${origin_dir}/hdl/qdma_sim/sys_clk_gen.v"]\
@@ -2104,10 +2119,12 @@ set files [list \
  [file normalize "${origin_dir}/hdl/qdma_sim/sample_tests_sriov.vh"]\
  [file normalize "${origin_dir}/hdl/qdma_sim/qdma_fifo_lut.sv"]\
 ]
-set imported_files [import_files -fileset sim_1 $files]
+#set imported_files [import_files -fileset sim_1 $files]
+add_files -norecurse -fileset $obj $files
 
 # Set 'sim_1' fileset file properties for local files
 set file "${origin_dir}/hdl/qdma_sim/pcie_4_c_rp.v"
+set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
 set_property -name "file_type" -value "Verilog" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
@@ -2119,7 +2136,23 @@ set_property -name "used_in_implementation" -value "1" -objects $file_obj
 set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
+# Eddie: Added to keep some notes
+# Set 'sources_1' fileset file properties for local files
+#set file "$origin_dir/hdl/lynx_pkg.sv"
+#set file [file normalize $file]
+#set file_obj [get_files -of_objects [get_filesets sources_1] [list "$file"]] 
+#set_property -name "file_type" -value "SystemVerilog" -objects $file_obj
+#set_property -name "is_enabled" -value "1" -objects $file_obj
+#set_property -name "is_global_include" -value "0" -objects $file_obj
+#set_property -name "library" -value "xil_defaultlib" -objects $file_obj
+####set_property -name "path_mode" -value "RelativeFirst" -objects $file_obj
+###set_property -name "used_in" -value "synthesis implementation simulation" -objects $file_obj
+#set_property -name "used_in_implementation" -value "1" -objects $file_obj
+#set_property -name "used_in_simulation" -value "1" -objects $file_obj
+#set_property -name "used_in_synthesis" -value "1" -objects $file_obj
+
 set file "${origin_dir}/hdl/qdma_sim/sys_clk_gen.v"
+set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
 set_property -name "file_type" -value "Verilog" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
@@ -2132,6 +2165,7 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/qdma_sim/sys_clk_gen_ds.v"
+set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
 set_property -name "file_type" -value "Verilog" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
@@ -2144,6 +2178,7 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/qdma_sim/board_common.vh"
+set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
 set_property -name "file_type" -value "Verilog Header" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
@@ -2155,6 +2190,7 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/qdma_sim/usp_pci_exp_usrapp_cfg.v"
+set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
 set_property -name "file_type" -value "Verilog" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
@@ -2167,6 +2203,7 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/qdma_sim/pci_exp_expect_tasks.vh"
+set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
 set_property -name "file_type" -value "Verilog Header" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
@@ -2178,6 +2215,7 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/qdma_sim/usp_pci_exp_usrapp_com.v"
+set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
 set_property -name "file_type" -value "Verilog" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
@@ -2190,6 +2228,7 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/qdma_sim/usp_pci_exp_usrapp_rx.v"
+set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
 set_property -name "file_type" -value "Verilog" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
@@ -2202,6 +2241,7 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/qdma_sim/sample_tests.vh"
+set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
 set_property -name "file_type" -value "Verilog Header" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
@@ -2213,6 +2253,7 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/qdma_sim/tests.vh"
+set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
 set_property -name "file_type" -value "Verilog Header" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
@@ -2224,6 +2265,7 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/qdma_sim/usp_pci_exp_usrapp_tx.v"
+set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
 set_property -name "file_type" -value "Verilog" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
@@ -2236,6 +2278,7 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/qdma_sim/xilinx_pcie_uscale_rp.v"
+set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
 set_property -name "file_type" -value "Verilog" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
@@ -2248,6 +2291,7 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/qdma_sim/xp4c_usp_smsw_model_core_top.v"
+set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
 set_property -name "file_type" -value "Verilog" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
@@ -2260,6 +2304,7 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/qdma_sim/board.v"
+set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
 set_property -name "file_type" -value "Verilog" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
@@ -2272,6 +2317,7 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/qdma_sim/qdma_stm_c2h_stub.sv"
+set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
 set_property -name "file_type" -value "SystemVerilog" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
@@ -2284,6 +2330,7 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/qdma_sim/dsc_byp_h2c.sv"
+set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
 set_property -name "file_type" -value "SystemVerilog" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
@@ -2296,6 +2343,7 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/qdma_sim/usp_pci_exp_usrapp_tx_sriov.sv"
+set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
 set_property -name "file_type" -value "SystemVerilog" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
@@ -2308,6 +2356,7 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/qdma_sim/xil_sig2pipe.v"
+set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
 set_property -name "file_type" -value "Verilog" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
@@ -2320,6 +2369,7 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/qdma_sim/dsc_byp_c2h.sv"
+set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
 set_property -name "file_type" -value "SystemVerilog" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
@@ -2332,6 +2382,7 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/qdma_sim/qdma_stm_h2c_stub.sv"
+set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
 set_property -name "file_type" -value "SystemVerilog" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
@@ -2344,6 +2395,7 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/qdma_sim/user_control.sv"
+set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
 set_property -name "file_type" -value "SystemVerilog" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
@@ -2356,6 +2408,7 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/qdma_sim/qdma_lpbk.sv"
+set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
 set_property -name "file_type" -value "SystemVerilog" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
@@ -2368,6 +2421,7 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/qdma_sim/qdma_stm_lpbk.sv"
+set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
 set_property -name "file_type" -value "SystemVerilog" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
@@ -2380,6 +2434,7 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/qdma_sim/qdma_app.sv"
+set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
 set_property -name "file_type" -value "SystemVerilog" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
@@ -2392,6 +2447,7 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/qdma_sim/qdma_qsts.sv"
+set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
 set_property -name "file_type" -value "SystemVerilog" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
@@ -2404,6 +2460,7 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/qdma_sim/st_c2h.sv"
+set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
 set_property -name "file_type" -value "SystemVerilog" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
@@ -2416,6 +2473,7 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/qdma_sim/qdma_stm_defines.svh"
+set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
 set_property -name "file_type" -value "Verilog Header" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
@@ -2427,6 +2485,7 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/qdma_sim/st_h2c.sv"
+set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
 set_property -name "file_type" -value "SystemVerilog" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
@@ -2439,6 +2498,7 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/qdma_sim/qdma_ecc_enc.sv"
+set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
 set_property -name "file_type" -value "SystemVerilog" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
@@ -2451,6 +2511,7 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/qdma_sim/axi_st_module.sv"
+set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
 set_property -name "file_type" -value "SystemVerilog" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
@@ -2463,6 +2524,7 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/qdma_sim/xilinx_qdma_pcie_ep.sv"
+set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
 set_property -name "file_type" -value "SystemVerilog" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
@@ -2475,6 +2537,7 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/qdma_sim/sample_tests_sriov.vh"
+set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
 set_property -name "file_type" -value "Verilog Header" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
@@ -2486,6 +2549,7 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "${origin_dir}/hdl/qdma_sim/qdma_fifo_lut.sv"
+set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
 set_property -name "file_type" -value "SystemVerilog" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
