@@ -423,12 +423,11 @@ initial begin
      //decide if QDMA or XDMA
       board.RP.tx_usrapp.TSK_REG_READ(xdma_bar, 16'h00);
       if (P_READ_DATA[31:16] == 16'h1fd3) begin    // QDMA
-         //testname = "qdma_mm_st_test0"; // This is the old QDMA test that we modified
          //testname = "device_page_table_host_memory";
          //testname = "device_page_table_dev_memory";
-         //testname = "soft_contr_host_memory";
+         testname = "soft_contr_host_memory";
          //testname = "soft_contr_dev_memory";
-         testname = "hard_contr_host_memory";
+         //testname = "hard_contr_host_memory";
          $display("*** Running test: {%0s}", testname);
       end
       else begin     // XDMA
