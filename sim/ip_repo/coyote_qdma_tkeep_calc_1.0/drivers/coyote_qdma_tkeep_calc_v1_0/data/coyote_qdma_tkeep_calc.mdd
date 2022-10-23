@@ -1,0 +1,10 @@
+
+
+OPTION psf_version = 2.1;
+
+BEGIN DRIVER coyote_qdma_tkeep_calc
+	OPTION supported_peripherals = (coyote_qdma_tkeep_calc);
+	OPTION copyfiles = all;
+	OPTION VERSION = 1.0;
+	OPTION NAME = coyote_qdma_tkeep_calc;
+END DRIVER
