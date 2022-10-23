@@ -1,0 +1,101 @@
+@verdi rc file Version 1.0
+[General]
+saveDB = FALSE
+relativePath = FALSE
+saveSingleView = FALSE
+saveNWaveWinId = 4
+VerdiVersion = Verdi_Q-2020.03
+[KeyNote]
+Line1 = invoke directory: /home/edwardr2/Developer/coyote_linked_list_v2_2020_2_device_page_table_memory_migration/coyote_linked_list_device_page_table_v2_2020_2/Coyote/hw/build/lynx/lynx.sim/sim_1/behav/vcs
+Line2 = command line: -elab ./board_simv.daidir/kdb.elab++ -ba 
+Line3 = current trace scope: board.EP.design_static_i.tlb_writer_0
+Line4 = memo:
+Line5 = Save Open Database Information: No
+Line6 = Path Option: Absolute Paths
+Line7 = Windows Option: All Windows
+[OneSearch]
+isExisted = TRUE
+[TestBench]
+ConstrViewShow = 0
+InherViewShow = 0
+FSDBMsgShow = 0
+AnnotationShow = 0
+Console = TRUE
+powerDumped = 0
+[fusa]
+fdb_server = 
+fdb_proj = 
+fdb_campaign = 
+fdb_tool = 
+[hb]
+postSimFile = /home/edwardr2/Developer/coyote_linked_list_v2_2020_2_device_page_table_memory_migration/coyote_linked_list_device_page_table_v2_2020_2/Coyote/hw/build/lynx/lynx.sim/sim_1/behav/vcs/inter.fsdb
+syncTime = 115776000
+viewport = 0 24 2558 1270 0 0 399 2556
+activeNode = "board.EP.design_static_i.tlb_writer_0"
+activeScope = "board.EP.design_static_i.tlb_writer_0"
+activeFile = "./../../../../lynx.ip_user_files/bd/design_static/ip/design_static_tlb_writer_0_0/sim/design_static_tlb_writer_0_0.v"
+interactiveMode = False
+viewType = Source
+simulatorMode = False
+sourceBeginLine = 64
+baMode = False
+srcLineNum = True
+AutoWrap = True
+IdentifyFalseLogic = False
+syncSignal = False
+traceMode = Hierarchical
+showTraceInSchema = True
+paMode = False
+funcMode = False
+powerAwareAnnot = True
+amsAnnot = True
+traceCrossHier = True
+DnDtraceCrossHierOnly = True
+traceIncTopPort = False
+leadingZero = False
+signalPane = False
+Scope1 = "board.EP.design_static_i.tlb_writer_0"
+Scope2 = "board.EP.inst_dynamic.inst_user_wrapper_0.inst_user_0.simple_histogram_inst"
+Scope3 = "board.EP.inst_dynamic.inst_tlb_top.genblk1[0].inst_reg_top.inst_fsm_rd"
+Scope4 = "board.EP.design_static_i.device_pt_walker_0.inst"
+Scope5 = "board.EP.design_static_i.device_pt_walker_0"
+Scope6 = "board.EP.inst_dynamic.inst_tlb_top.genblk1[0].inst_reg_top.inst_cnfg_slave"
+Scope7 = "board.EP.design_static_i"
+Scope8 = "board"
+multipleSelection = 30 61 1 0 0 62 1 0 0 63 1 0 0 64 1 0 0 65 1 0 0 66 1 0 0 67 1 0 0 68 1 0 0 69 1 0 0 70 1 0 0 71 1 0 0 72 1 0 0 90 1 0 0 89 1 0 0 88 1 0 0 87 1 0 0 86 1 0 0 85 1 0 0 84 1 0 0 83 1 0 0 81 1 0 0 82 1 0 0 80 1 0 0 79 1 0 0 78 1 0 0 77 1 0 0 76 1 0 0 75 1 0 0 7\
+4 1 0 0 73 1 0 0
+sdfCheckUndef = FALSE
+simFlow = FALSE
+[hb.design]
+importCmd = "-simflow" "-dbdir" "./board_simv.daidir" 
+invokeDir = /home/edwardr2/Developer/coyote_linked_list_v2_2020_2_device_page_table_memory_migration/coyote_linked_list_device_page_table_v2_2020_2/Coyote/hw/build/lynx/lynx.sim/sim_1/behav/vcs
+[hb.sourceTab.1]
+scope = board.EP.design_static_i.tlb_writer_0
+File = /home/edwardr2/Developer/coyote_linked_list_v2_2020_2_device_page_table_memory_migration/coyote_linked_list_device_page_table_v2_2020_2/Coyote/hw/build/lynx/lynx.ip_user_files/bd/design_static/ip/design_static_tlb_writer_0_0/sim/design_static_tlb_writer_0_\
+0.v
+Line = 65
+[nMemoryManager]
+WaveformFile = /home/edwardr2/Developer/coyote_linked_list_v2_2020_2_device_page_table_memory_migration/coyote_linked_list_device_page_table_v2_2020_2/Coyote/hw/build/lynx/lynx.sim/sim_1/behav/vcs/inter.fsdb
+UserActionNum = 0
+nMemWindowNum = 0
+[wave.0]
+viewPort = 0 25 1695 516 359 145
+primaryWindow = TRUE
+SessionFile = /home/edwardr2/Developer/coyote_linked_list_v2_2020_2_device_page_table_memory_migration/coyote_linked_list_device_page_table_v2_2020_2/Coyote/hw/build/lynx/lynx.sim/sim_1/behav/vcs/Verdi_take_two.ses.wave.0
+displayGrid = FALSE
+hierarchicalName = FALSE
+snap = TRUE
+displayLeadingZeros = FALSE
+fixDelta = FALSE
+displayCursorMarker = FALSE
+autoUpdate = FALSE
+highlightGlitchs = FALSE
+waveformSyncCursorMarker = FALSE
+waveformSyncHorizontalRange = FALSE
+waveformSyncVerticalscroll = FALSE
+displayErrors = TRUE
+displayMsgSymbols = TRUE
+showMsgDescriptions = TRUE
+autoFit = FALSE
+displayDeltaY = FALSE
+centerCursor = FALSE

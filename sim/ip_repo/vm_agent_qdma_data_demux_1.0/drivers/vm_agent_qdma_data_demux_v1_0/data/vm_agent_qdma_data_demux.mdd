@@ -1,0 +1,10 @@
+
+
+OPTION psf_version = 2.1;
+
+BEGIN DRIVER vm_agent_qdma_data_demux
+	OPTION supported_peripherals = (vm_agent_qdma_data_demux);
+	OPTION copyfiles = all;
+	OPTION VERSION = 1.0;
+	OPTION NAME = vm_agent_qdma_data_demux;
+END DRIVER
